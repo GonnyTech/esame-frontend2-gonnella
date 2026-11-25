@@ -17,7 +17,7 @@ export function MovieListPage() {
       setError(null);
 
       try {
-        const apiKey = '0757cd68b402083daff6fe1f7fad5db9';
+        const apiKey = import.meta.env.VITE_TMDB_API_KEY;
         if (!apiKey) {
           throw new Error('Configura VITE_TMDB_API_KEY nel file .env.local.');
         }

@@ -4,7 +4,7 @@ import { Poster } from '../components/Poster';
 import { Tag } from '../components/Tag';
 import type { MovieDetail } from '../types/movie';
 
-const API_KEY = '0757cd68b402083daff6fe1f7fad5db9';
+const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
 // Carica e mostra la pagina.
 export function MovieDetailPage() {

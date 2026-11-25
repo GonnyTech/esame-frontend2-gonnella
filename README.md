@@ -1,32 +1,45 @@
-# React + TypeScript + Vite
+# Movie App
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Applicazione React e TypeScript che mostra i risultati di ricerca TMDB per
+"The Lord of the Rings" e i dettagli di un film.
 
-Currently, two official plugins are available:
+## Requisiti
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Node.js
+- npm
+- Una API key TMDB
 
-## React Compiler
+## Avvio
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+1. Installa le dipendenze:
 
-## Expanding the Oxlint configuration
+   ```sh
+   npm install
+   ```
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+2. Copia `.env.example` in `.env` e inserisci la tua API key:
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+   ```env
+   VITE_TMDB_API_KEY=inserisci_qui_la_tua_api_key
+   ```
+
+3. Avvia l'applicazione:
+
+   ```sh
+   npm run dev
+   ```
+
+`.env` è escluso da Git; non committare la tua API key. Le variabili `VITE_`
+sono incluse nel codice client e visibili nel browser.
+
+## Rotte
+
+- `/` — elenco dei film
+- `/movies/:id` — dettaglio del film
+
+## Altri comandi
+
+```sh
+npm run build
+npm run lint
 ```
-
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
