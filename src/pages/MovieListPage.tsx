@@ -8,10 +8,14 @@ const API_URL =
 // Recupera e mostra i risultati fissi della ricerca TMDB.
 export function MovieListPage() {
   const [movies, setMovies] = useState<MovieListItem[]>([]);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchMovies = async () => {
+      setLoading(true);
+      setError(null);
+
       try {
         const apiKey = '0757cd68b402083daff6fe1f7fad5db9';
         if (!apiKey) {
@@ -25,15 +29,23 @@ export function MovieListPage() {
 
         const data: MovieSearchResponse = await response.json();
         setMovies(data.results);
-      } catch (error) {
-        setError(
-          error instanceof Error ? error.message : 'Errore durante il caricamento dei film.',
-        );
+      } catch {
+        setError('Errore durante il caricamento.');
+      } finally {
+        setLoading(false);
       }
     };
 
     void fetchMovies();
   }, []);
+
+  if (loading) {
+    return <p>Caricamento...</p>;
+  }
+
+  if (error) {
+    return <p role="alert">{error}</p>;
+  }
 
   return (
     <>
@@ -42,7 +54,6 @@ export function MovieListPage() {
         Risultati fissi da API · query=The Lord of the Rings · page=1 · max 20
         items · senza filtri / paginazione
       </p>
-      {error && <p role="alert">{error}</p>}
       <div className="movie-grid">
         {movies.map((movie) => (
           <MovieCard key={movie.id} movie={movie} />

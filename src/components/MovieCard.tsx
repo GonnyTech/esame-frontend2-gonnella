@@ -3,7 +3,7 @@ import { Poster } from './Poster';
 import type { MovieListItem } from '../types/movie';
 
 // Definisce le props necessarie per la card del film.
-export interface MovieCardProps {
+export type MovieCardProps = {
   movie: MovieListItem;
 }
 

@@ -1,5 +1,4 @@
-// Definisce le props necessarie per il segnaposto del poster.
-export interface PosterProps {
+export type PosterProps = {
   posterPath: string | null;
   alt: string;
   className?: string;
